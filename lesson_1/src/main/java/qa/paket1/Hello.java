@@ -7,6 +7,6 @@ public class Hello {
 
   public static void hello( String somebody){
 
-    System.out.println("Hello"+somebody+"!");
+    System.out.println("Hello "+somebody+"!");
   }
 	}
