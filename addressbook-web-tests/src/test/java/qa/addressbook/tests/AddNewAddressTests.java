@@ -9,8 +9,8 @@ public class AddNewAddressTests extends TestBase {
   @Test
   public void testsAddNewAddress() {
 
-    app.initNewContact();
-    app.fillNewContact(new ContactData("Viacheslav",
+    app.getContactHelper().initNewContact();
+    app.getContactHelper().fillNewContact(new ContactData("Viacheslav",
                                   "Pykhydko",
                                   "Slava17",
                                   "3D Printers",
@@ -20,7 +20,7 @@ public class AddNewAddressTests extends TestBase {
                                   "+308-63-077-77-77",
                                   "044-11-22-444",
                                   "slava17puh@gmail.com"));
-    app.submitNewContact();
+    app.getContactHelper().submitNewContact();
   }
 
 }
