@@ -1,15 +1,16 @@
-package qa.addressbook;
+package qa.addressbook.tests;
 
 import org.testng.annotations.Test;
+import qa.addressbook.model.ContactData;
 
-public class AddNewAddress extends TestBase {
+public class AddNewAddressTests extends TestBase {
 
 
   @Test
   public void testsAddNewAddress() {
 
-    initNewContact();
-    fillNewContact(new NewContact("Viacheslav",
+    app.initNewContact();
+    app.fillNewContact(new ContactData("Viacheslav",
                                   "Pykhydko",
                                   "Slava17",
                                   "3D Printers",
@@ -19,7 +20,7 @@ public class AddNewAddress extends TestBase {
                                   "+308-63-077-77-77",
                                   "044-11-22-444",
                                   "slava17puh@gmail.com"));
-    submitNewContact();
+    app.submitNewContact();
   }
 
 }

@@ -1,6 +1,6 @@
-package qa.addressbook;
+package qa.addressbook.model;
 
-public class NewContact {
+public class ContactData {
   private final String firstName;
   private final String lastName;
   private final String nickname;
@@ -12,16 +12,16 @@ public class NewContact {
   private final String workPhone;
   private final String email;
 
-  public NewContact(String firstName,
-                    String lastName,
-                    String nickname,
-                    String title,
-                    String company,
-                    String address,
-                    String homePhone,
-                    String mobilePhone,
-                    String workPhone,
-                    String email) {
+  public ContactData(String firstName,
+                     String lastName,
+                     String nickname,
+                     String title,
+                     String company,
+                     String address,
+                     String homePhone,
+                     String mobilePhone,
+                     String workPhone,
+                     String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.nickname = nickname;
