@@ -15,4 +15,12 @@ public class NavigationHelper extends HelperBase {
   public void gotoGroupPage() {
     click(By.linkText("groups"));
   }
+
+  public void closeDialogWindow() {
+    wd.switchTo().alert().accept();
+  }
+
+  public void gotoHomePage() {
+    click(By.linkText("home"));
+  }
 }

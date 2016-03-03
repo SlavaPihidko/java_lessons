@@ -34,12 +34,8 @@ public class ContactHelper extends HelperBase {
     click(By.linkText("add new"));
   }
 
-  public void gotoHomePage() {
-    click(By.linkText("home"));
-  }
-
   public void selectContact() {
-    click(By.id("5"));
+    click(By.id("9"));
   }
 
   public void initContactModification() {
@@ -53,5 +49,9 @@ public class ContactHelper extends HelperBase {
 
   public void returnToHomePage() {
     click(By.linkText("home page"));
+  }
+
+  public void deletionContact() {
+    click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
   }
 }
