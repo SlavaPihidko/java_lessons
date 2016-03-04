@@ -1,8 +1,11 @@
 package qa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import qa.addressbook.model.ContactData;
 
 /**
@@ -18,18 +21,27 @@ public class ContactHelper extends HelperBase {
     click(By.xpath("//div[@id='content']/form/input[21]"));
   }
 
-  public void fillNewContact(ContactData newContact) {
-    type(By.name("firstname"),newContact.getFirstName());
-    type(By.name("lastname"),newContact.getLastName());
-    type(By.name("nickname"),newContact.getNickname());
-    type(By.name("title"),newContact.getTitle());
-    type(By.name("company"),newContact.getCompany());
-    type(By.name("address"),newContact.getAddress());
-    type(By.name("home"),newContact.getHomePhone());
-    type(By.name("mobile"),newContact.getMobilePhone());
-    type(By.name("work"),newContact.getWorkPhone());
-    type(By.name("email"),newContact.getEmail());
+  public void fillNewContact(ContactData newContact, boolean creation) {
+    type(By.name("firstname"), newContact.getFirstName());
+    type(By.name("lastname"), newContact.getLastName());
+    type(By.name("nickname"), newContact.getNickname());
+    type(By.name("title"), newContact.getTitle());
+    type(By.name("company"), newContact.getCompany());
+    type(By.name("address"), newContact.getAddress());
+    type(By.name("home"), newContact.getHomePhone());
+    type(By.name("mobile"), newContact.getMobilePhone());
+    type(By.name("work"), newContact.getWorkPhone());
+    type(By.name("email"), newContact.getEmail());
+
+    if (creation) {
+      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
+    }
+      else {
+      Assert.assertFalse(isElementPresent(By.name("new_group")));
+      }
+
   }
+
 
   public void initNewContact() {
     click(By.linkText("add new"));

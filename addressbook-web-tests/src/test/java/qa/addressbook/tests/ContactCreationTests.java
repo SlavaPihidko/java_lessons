@@ -19,7 +19,8 @@ public class ContactCreationTests extends TestBase {
                                   "044-11-22-3-33",
                                   "+308-63-077-77-77",
                                   "044-11-22-444",
-                                  "slava17puh@gmail.com"));
+                                  "slava17puh@gmail.com",
+                                  "test_group"),true);
     app.getContactHelper().submitNewContact();
   }
 
