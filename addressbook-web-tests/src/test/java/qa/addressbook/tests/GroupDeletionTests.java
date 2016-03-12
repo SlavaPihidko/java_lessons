@@ -23,6 +23,12 @@ public class GroupDeletionTests extends TestBase {
     //int after = app.getGroupHelper().getGroupCount();
     List<GroupData> after = app.getGroupHelper().getGroupList();
     Assert.assertEquals(after.size(),before.size()-1);
+
+    before.remove(before.size()-1);
+   /* for(int i=0; i<after.size(); i++) {
+      Assert.assertEquals(before.get(i), after.get(i)); // сравниваем два элемента с одинаковыми индексами
+    } */
+    Assert.assertEquals(before, after); // цикл не нужен, тестовый фреймворк умеет сравнивать без цикла
   }
 
 }
