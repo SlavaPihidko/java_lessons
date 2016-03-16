@@ -3,10 +3,14 @@ package qa.addressbook.appmanager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import qa.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Slava on 02.03.2016.
@@ -66,5 +70,34 @@ public class ContactHelper extends HelperBase {
 
   public void deletionContact() {
     click(By.xpath("//div[@id='content']/form[2]/div[2]/input"));
+  }
+
+  public List<ContactData> getContactList() {
+    List<ContactData> contacts = new ArrayList<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(WebElement element: elements){
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      WebElement cell1 = cells.get( 1 );
+      WebElement cell2 = cells.get( 2 );
+      WebElement cell3 = cells.get( 3 );
+      String lastName = cell1.getText();
+      String firstName = cell2.getText();
+      String address = cell3.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData( id,
+                                             firstName,
+                                             lastName,
+                                             null,
+                                             null,
+                                             null,
+                                             address,
+                                             null,
+                                             null,
+                                             null,
+                                             null,
+                                             null);
+      contacts.add(contact);
+  }
+    return contacts;
   }
 }
