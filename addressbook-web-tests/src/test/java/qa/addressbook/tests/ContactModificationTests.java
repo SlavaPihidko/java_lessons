@@ -14,7 +14,7 @@ public class ContactModificationTests extends TestBase {
 
   @Test(enabled=false)
   public void testContactModification(){
-    app.getNavigationHelper() .gotoHomePage();
+    app.goTo() .gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().initContactModification();

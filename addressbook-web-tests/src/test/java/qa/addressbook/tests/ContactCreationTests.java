@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import qa.addressbook.model.ContactData;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -13,7 +12,7 @@ public class ContactCreationTests extends TestBase {
 
   @Test(enabled=false)
   public void testsAddNewAddress() {
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().initNewContact();
     ContactData contact = new ContactData("Viacheslav",
@@ -29,7 +28,7 @@ public class ContactCreationTests extends TestBase {
                                           "test_group");
     app.getContactHelper().fillNewContact(contact,true);
     app.getContactHelper().submitNewContact();
-    app.getNavigationHelper().gotoHomePage();
+    app.goTo().gotoHomePage();
     List<ContactData> after = app.getContactHelper().getContactList();
 
     Assert.assertEquals(after.size(),before.size()+1);
