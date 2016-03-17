@@ -18,7 +18,7 @@ public class GroupModificationTests extends TestBase {
     app.goTo().groupPage();
    // if (!app.group().isThereAGroup()) {
     if (app.group().list().size()== 0) {  // теперь используем размер списка, а не наличие локатора
-      app.group().create(new GroupData("test_group", null, null));
+      app.group().create(new GroupData().withName("test_group"));
     }
   }
 
@@ -27,7 +27,8 @@ public class GroupModificationTests extends TestBase {
     //int before = app.group().getGroupCount();
     List<GroupData> before = app.group().list();
     int index = before.size()-1;
-    GroupData group = new GroupData(before.get(index).getId(), "test1", "test pole 1", "test pole 3");
+    GroupData group = new GroupData()
+            .withId(before.get(index).getId()).withName("test1").withHeader("test pole 1").withFooter("test pole 3");
     app.group().modify(index, group);
     // int after = app.group().getGroupCount();
     List<GroupData> after = app.group().list();
