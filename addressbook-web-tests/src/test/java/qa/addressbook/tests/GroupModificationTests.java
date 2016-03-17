@@ -15,21 +15,22 @@ public class GroupModificationTests extends TestBase {
 
   @BeforeMethod
     public void ensurePreConditions() {
-    app.getNavigationHelper().gotoGroupPage();
-    if (!app.getGroupHelper().isThereAGroup()) {
-      app.getGroupHelper().creationGroups(new GroupData("test_group", null, null));
+    app.goTo().groupPage();
+   // if (!app.group().isThereAGroup()) {
+    if (app.group().list().size()== 0) {  // теперь используем размер списка, а не наличие локатора
+      app.group().create(new GroupData("test_group", null, null));
     }
   }
 
   @Test
   public void testGroupModification(){
-    //int before = app.getGroupHelper().getGroupCount();
-    List<GroupData> before = app.getGroupHelper().getGroupList();
+    //int before = app.group().getGroupCount();
+    List<GroupData> before = app.group().list();
     int index = before.size()-1;
     GroupData group = new GroupData(before.get(index).getId(), "test1", "test pole 1", "test pole 3");
-    app.getGroupHelper().modifyGroup(index, group);
-    // int after = app.getGroupHelper().getGroupCount();
-    List<GroupData> after = app.getGroupHelper().getGroupList();
+    app.group().modify(index, group);
+    // int after = app.group().getGroupCount();
+    List<GroupData> after = app.group().list();
     Assert.assertEquals(after.size(),before.size());
 
     before.remove(index);
