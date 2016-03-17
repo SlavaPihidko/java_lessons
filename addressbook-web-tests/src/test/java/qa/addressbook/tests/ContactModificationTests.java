@@ -1,7 +1,11 @@
 package qa.addressbook.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import qa.addressbook.model.ContactData;
+
+import java.util.HashSet;
+import java.util.List;
 
 /**
  * Created by Slava on 03.03.2016.
@@ -11,7 +15,8 @@ public class ContactModificationTests extends TestBase {
   @Test
   public void testContactModification(){
     app.getNavigationHelper() .gotoHomePage();
-    app.getContactHelper().selectContact();
+    List<ContactData> before = app.getContactHelper().getContactList();
+    app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().initContactModification();
     app.getContactHelper().fillNewContact(new ContactData("Viacheslav",
                                                           "Pykhydko",
@@ -26,6 +31,11 @@ public class ContactModificationTests extends TestBase {
                                                           null),false);
     app.getContactHelper().submitContactModification();
     app.getContactHelper().returnToHomePage();
+    List<ContactData> after = app.getContactHelper().getContactList();
+
+    Assert.assertEquals(after.size(),before.size());
+
+    Assert.assertEquals(new HashSet<Object>(after), new HashSet<Object>(before));
 
 
   }
