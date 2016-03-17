@@ -6,18 +6,19 @@ import qa.addressbook.model.GroupData;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() {
     app.goTo().groupPage();
-    List<GroupData> before = app.group().list();
+    Set<GroupData> before = app.group().all();
     //int before = app.group().getGroupCount();
     GroupData group = new GroupData().withName("test_group");
     app.group().create(group);
     //int after = app.group().getGroupCount();
-    List<GroupData> after = app.group().list();
+    Set<GroupData> after = app.group().all();
     Assert.assertEquals(after.size(),before.size()+1);
 
     int max=0;
@@ -28,7 +29,7 @@ public class GroupCreationTests extends TestBase {
     }
     group.withId(max);
     before.add(group);
-    Assert.assertEquals( new HashSet<Object>(before), new HashSet<Object>(after) );
+    Assert.assertEquals(before, after );
   }
 
 }
