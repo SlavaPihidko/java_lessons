@@ -48,6 +48,14 @@ public class ContactHelper extends HelperBase {
 
   }
 
+  public void modify(ContactData contact) {
+    selectContactById(contact.getId());
+    initContactModification();
+    fillNewContact(contact,false);
+    submitContactModification();
+    returnToHomePage();
+  }
+
 
   public void initNewContact() {
     click(By.linkText("add new"));
