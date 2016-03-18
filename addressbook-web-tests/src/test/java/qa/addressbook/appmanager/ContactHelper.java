@@ -10,7 +10,9 @@ import org.testng.Assert;
 import qa.addressbook.model.ContactData;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Slava on 02.03.2016.
@@ -99,6 +101,26 @@ public class ContactHelper extends HelperBase {
                                              null);
       contacts.add(contact);
   }
+    return contacts;
+  }
+
+  public Set<ContactData> all() {
+    Set<ContactData> contacts = new HashSet<ContactData>();
+    List<WebElement> elements = wd.findElements(By.name("entry"));
+    for(WebElement element: elements){
+      List<WebElement> cells = element.findElements(By.tagName("td"));
+      WebElement cell1 = cells.get( 1 );
+      WebElement cell2 = cells.get( 2 );
+      WebElement cell3 = cells.get( 3 );
+      String lastName = cell1.getText();
+      String firstName = cell2.getText();
+      String address = cell3.getText();
+      int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+      ContactData contact = new ContactData()
+              .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address);
+
+      contacts.add(contact);
+    }
     return contacts;
   }
 }

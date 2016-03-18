@@ -14,12 +14,12 @@ public class ContactDeletionTests extends TestBase {
 
   @Test(enabled=false)
   public void testContactDeletion(){
-    app.goTo().gotoHomePage();
+    app.goTo().homePage();
     List<ContactData> before = app.getContactHelper().getContactList();
     app.getContactHelper().selectContact(before.size()-1);
     app.getContactHelper().deletionContact();
     app.goTo().closeDialogWindow();
-    app.goTo().gotoHomePage();
+    app.goTo().homePage();
     List<ContactData> after = app.getContactHelper().getContactList();
 
     Assert.assertEquals(after.size(),before.size()-1);

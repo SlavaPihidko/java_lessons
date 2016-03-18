@@ -1,18 +1,21 @@
 package qa.addressbook.model;
 
 public class ContactData {
-  private final String firstName;
-  private final String lastName;
-  private final String nickname;
-  private final String title;
-  private final String company;
-  private final String address;
-  private final String homePhone;
-  private final String mobilePhone;
-  private final String workPhone;
-  private final String email;
+
+  private  String firstName;
+  private  String lastName;
+  private  String nickname;
+  private  String title;
+  private  String company;
+  private  String address;
+  private  String homePhone;
+  private  String mobilePhone;
+  private  String workPhone;
+  private  String email;
   private String group;
-  private int id;
+  private int id = Integer.MAX_VALUE;
+
+  public ContactData(){};
 
   public ContactData(int id,
                      String firstName,
@@ -113,8 +116,65 @@ public class ContactData {
   public int getId() {
     return id;
   }
-  public void setId(int id) {
+
+  public ContactData withId(int id) {
     this.id = id;
+    return this;
+  }
+
+  public ContactData withFirstName(String firstName) {
+    this.firstName = firstName;
+    return this;
+  }
+
+  public ContactData withLastName(String lastName) {
+    this.lastName = lastName;
+    return this;
+  }
+
+  public ContactData withNickname(String nickname) {
+    this.nickname = nickname;
+    return this;
+  }
+
+  public ContactData withTitle(String title) {
+    this.title = title;
+    return this;
+  }
+
+  public ContactData withCompany(String company) {
+    this.company = company;
+    return this;
+  }
+
+  public ContactData withAddress(String address) {
+    this.address = address;
+    return this;
+  }
+
+  public ContactData withHomePhone(String homePhone) {
+    this.homePhone = homePhone;
+    return this;
+  }
+
+  public ContactData withMobilePhone(String mobilePhone) {
+    this.mobilePhone = mobilePhone;
+    return this;
+  }
+
+  public ContactData withWorkPhone(String workPhone) {
+    this.workPhone = workPhone;
+    return this;
+  }
+
+  public ContactData withEmail(String email) {
+    this.email = email;
+    return this;
+  }
+
+  public ContactData withGroup(String group) {
+    this.group = group;
+    return this;
   }
 
   @Override

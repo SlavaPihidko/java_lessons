@@ -26,7 +26,7 @@ public class NavigationHelper extends HelperBase {
     wd.switchTo().alert().accept();
   }
 
-  public void gotoHomePage() {
+  public void homePage() {
     if (isElementPresent(By.id("maintable"))) {
       return;
     }
