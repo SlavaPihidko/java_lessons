@@ -72,7 +72,7 @@ public class GroupHelper extends HelperBase {
     returnToGroupPage();
   }
   public void delete(GroupData group) {
-    selectGroupById(group.getId()); //удаляем последнюю группу
+    selectGroupById(group.getId());
     deleteSelectedGroups();
     returnToGroupPage();
   }

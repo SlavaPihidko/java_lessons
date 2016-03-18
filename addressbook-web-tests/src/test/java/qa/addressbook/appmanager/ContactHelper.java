@@ -58,6 +58,10 @@ public class ContactHelper extends HelperBase {
     //click(By.name("selected[]"));
   }
 
+  public void selectContactById(int id) {
+    wd.findElement(By.cssSelector("input[value='"+id+"']")).click();
+  }
+
   public void initContactModification() {
     click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
 
