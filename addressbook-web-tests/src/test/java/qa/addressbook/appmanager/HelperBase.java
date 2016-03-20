@@ -5,11 +5,12 @@ import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import qa.addressbook.tests.TestBase;
 
 /**
  * Created by Slava on 02.03.2016.
  */
-public class HelperBase {
+public class HelperBase extends TestBase {
 
   protected WebDriver wd;
 

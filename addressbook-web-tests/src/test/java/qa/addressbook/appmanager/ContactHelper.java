@@ -39,12 +39,15 @@ public class ContactHelper extends HelperBase {
     type(By.name("work"), newContact.getWorkPhone());
     type(By.name("email"), newContact.getEmail());
 
+
+
     if (creation) {
-      new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
+      if(app.group().all().size()!= 0) new Select(wd.findElement(By.name("new_group"))).selectByVisibleText(newContact.getGroup());
     }
       else {
       Assert.assertFalse(isElementPresent(By.name("new_group")));
       }
+
 
   }
 
@@ -133,4 +136,12 @@ public class ContactHelper extends HelperBase {
     }
     return contacts;
   }
+
+  public void  create(ContactData contact) {
+    initNewContact();
+    fillNewContact(contact,true);
+    submitNewContact();
+    returnToHomePage();
+  }
+
 }
