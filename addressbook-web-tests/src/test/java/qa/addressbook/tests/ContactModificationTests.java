@@ -1,6 +1,7 @@
 package qa.addressbook.tests;
 
 import org.testng.Assert;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import qa.addressbook.model.ContactData;
 
@@ -13,9 +14,18 @@ import java.util.Set;
  */
 public class ContactModificationTests extends TestBase {
 
+  @BeforeMethod
+  public void ensurePreconditions(){
+    app.goTo().homePage();
+    if (app.getContactHelper().all().size()== 0) {
+      app.getContactHelper().create(new ContactData()
+              .withFirstName("Viacheslav").withLastName("Pykhydko")
+              .withAddress("Ukraine, Kiev").withGroup("test_group"));
+    }
+  }
+
   @Test
   public void testContactModification(){
-    app.goTo().homePage();
     Set<ContactData> before = app.getContactHelper().all();
     ContactData modifiedContact = before.iterator().next();
     ContactData contact = new ContactData().withId(modifiedContact.getId())
