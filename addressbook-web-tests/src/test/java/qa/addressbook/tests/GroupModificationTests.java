@@ -19,7 +19,7 @@ public class GroupModificationTests extends TestBase {
     public void ensurePreConditions() {
     app.goTo().groupPage();
    // if (!app.group().isThereAGroup()) {
-    if (app.group().list().size()== 0) {  // теперь используем размер списка, а не наличие локатора
+    if (app.group().all().size()== 0) {  // теперь используем размер списка, а не наличие локатора
       app.group().create(new GroupData().withName("test_group"));
     }
   }
