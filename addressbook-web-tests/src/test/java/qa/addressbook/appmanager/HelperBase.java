@@ -10,7 +10,7 @@ import qa.addressbook.tests.TestBase;
 /**
  * Created by Slava on 02.03.2016.
  */
-public class HelperBase extends TestBase {
+public class HelperBase {
 
   protected WebDriver wd;
 
