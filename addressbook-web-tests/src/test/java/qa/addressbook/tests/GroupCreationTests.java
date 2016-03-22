@@ -1,25 +1,22 @@
 package qa.addressbook.tests;
 
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import qa.addressbook.model.GroupData;
+import qa.addressbook.model.Groups;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.MatcherAssert.assertThat;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class GroupCreationTests extends TestBase {
 
   @Test
   public void testGroupCreation() {
     app.goTo().groupPage();
-    Set<GroupData> before = app.group().all();
-    //int before = app.group().getGroupCount();
+    Groups before = app.group().all();
     GroupData group = new GroupData().withName("test_group");
     app.group().create(group);
-    //int after = app.group().getGroupCount();
-    Set<GroupData> after = app.group().all();
-    Assert.assertEquals(after.size(),before.size()+1);
+    Groups after = app.group().all();
+    assertThat(after.size(),equalTo(before.size()+1));
 
     int max=0;
     for(GroupData g: after){
@@ -28,8 +25,8 @@ public class GroupCreationTests extends TestBase {
       }
     }
     group.withId(max);
-    before.add(group);
-    Assert.assertEquals(before, after );
+
+    assertThat(after, equalTo(before.withAdded(group)));
   }
 
 }
