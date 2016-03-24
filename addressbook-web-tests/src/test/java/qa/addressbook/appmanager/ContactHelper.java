@@ -76,7 +76,8 @@ public class ContactHelper extends HelperBase {
 
   public void initContactModification(int id) {
     wd.findElement(By.cssSelector("a[href='edit.php?id="+id+"']")).click();
-    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a/img"));
+    //wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']",id))).click();
+    //click(By.xpath("//table[@id='maintable']/tbody/tr[2]/td[8]/a"));
 
   }
 
@@ -145,4 +146,16 @@ public class ContactHelper extends HelperBase {
     returnToHomePage();
   }
 
+  public ContactData infoFromEditForm(ContactData contact) {
+    initContactModification(contact.getId());
+    String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
+    String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
+    String home = wd.findElement(By.name("home")).getAttribute("value");
+    String mobile = wd.findElement(By.name("mobile")).getAttribute("value");
+    String work = wd.findElement(By.name("work")).getAttribute("value");
+    wd.navigate().back(); // навигация назад
+    return new ContactData().withId(contact.getId()).withFirstName(firstname).withLastName(lastname)
+            .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
+
+  }
 }
