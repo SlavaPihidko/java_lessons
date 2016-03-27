@@ -20,6 +20,7 @@ public class ContactData {
   private String group;
   private int id = Integer.MAX_VALUE;
   private String allPhones;
+  private String allDataOfContacts;
 
   public String getAllPhones() {
     return allPhones;
@@ -221,6 +222,15 @@ public class ContactData {
     return this;
   }
 
+  public String getAllDataOfContacts() {
+    return allDataOfContacts;
+  }
+
+  public ContactData withAllDataOfContacts(String allDataOfContacts) {
+    this.allDataOfContacts = allDataOfContacts;
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -254,4 +264,6 @@ public class ContactData {
     result = 31 * result + id;
     return result;
   }
+
+
 }

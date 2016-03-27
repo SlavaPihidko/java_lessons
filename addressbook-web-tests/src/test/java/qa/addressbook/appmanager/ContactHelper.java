@@ -137,7 +137,7 @@ public class ContactHelper extends HelperBase {
      /* ContactData contact = new ContactData() //для резки строки
               .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
               .withHomePhone(phones[0]).withMobilePhone(phones[1]).withWorkPhone(phones[2]); */
-      ContactData contact = new ContactData() //для резки строки
+      ContactData contact = new ContactData()
               .withId(id).withFirstName(firstName).withLastName(lastName).withAddress(address)
               .withAllEmails(allEmails).withAllPhones(allPhones);
       contacts.add(contact);
@@ -168,5 +168,16 @@ public class ContactHelper extends HelperBase {
             .withAddress(address).withEmail(email).withEmail2(email2).withEmail3(email3)
             .withHomePhone(home).withMobilePhone(mobile).withWorkPhone(work);
 
+  }
+
+  public void contactDetails(int id) {
+    wd.findElement(By.cssSelector("a[href='view.php?id="+id+"']")).click();
+  }
+
+  public ContactData allContactInfo() {
+    //Contacts contacts = new Contacts();
+    WebElement element = wd.findElement(By.id("content"));
+    String allDataOfContact = element.getText();
+     return new ContactData().withAllDataOfContacts(allDataOfContact);
   }
 }
