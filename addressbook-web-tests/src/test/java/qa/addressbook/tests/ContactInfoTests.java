@@ -24,13 +24,20 @@ public class ContactInfoTests extends TestBase {
     ContactData allcontact = app.getContactHelper().allContactInfo();
     ContactData allEditContact = app.getContactHelper().infoFromEditForm();
 
-    assertThat(allcontact, equalTo(mergeAllData(allEditContact)));
+    assertThat(mergeAllData2(allcontact), equalTo(mergeAllData(allEditContact)));
   }
 
   private String mergeAllData(ContactData contact) {
     return Arrays.asList(contact.getFirstName(), contact.getLastName(),contact.getAddress(),
             contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
             contact.getEmail(), contact.getEmail2(),contact.getEmail3())
+            .stream().filter((s) -> ! s.equals(""))
+            .map(ContactInfoTests:: cleaned)
+            .collect(Collectors.joining(""));
+  }
+
+  private String mergeAllData2(ContactData contact) {
+    return Arrays.asList(contact.getAllDataOfContacts())
             .stream().filter((s) -> ! s.equals(""))
             .map(ContactInfoTests:: cleaned)
             .collect(Collectors.joining(""));
