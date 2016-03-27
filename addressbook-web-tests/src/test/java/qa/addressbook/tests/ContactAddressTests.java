@@ -27,11 +27,13 @@ public class ContactAddressTests extends TestBase {
     return Arrays.asList(contact.getAddress())
             .stream()
             .map(ContactAddressTests:: cleaned)
-            .collect(Collectors.joining(" "));
+            .collect(Collectors.joining(""));
   }
 
   public static String cleaned(String address) {
-    return address.replaceAll("\\s", "");
+
+    String a1= address.replaceAll("\\s+", " ");
+    return a1.replaceAll("\\s","\n");
   }
 
 }
