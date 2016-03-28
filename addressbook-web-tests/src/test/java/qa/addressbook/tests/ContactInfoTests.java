@@ -45,8 +45,10 @@ public class ContactInfoTests extends TestBase {
 
   public static String cleaned(String address) {
 
-    String a1= address.replaceAll("\\s+", " ");
-    return a1.replaceAll("\\s","\n");
+    return address.replaceAll("\\s+", " ").
+            replaceAll("\\s","").replaceAll("[H:,M:,W:]","").replaceAll("\\www+.\\w+.\\w+","")
+            .replaceAll("[()]","");
+
   }
 
 }
