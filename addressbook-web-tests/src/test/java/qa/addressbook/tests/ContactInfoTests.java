@@ -28,9 +28,13 @@ public class ContactInfoTests extends TestBase {
   }
 
   private String mergeAllData(ContactData contact) {
+    String [] getEmail = contact.getEmail().split("@");
+    String [] getEmail2 = contact.getEmail2().split("@");
+    String [] getEmail3 = contact.getEmail3().split("@");
     return Arrays.asList(contact.getFirstName(), contact.getLastName(),contact.getAddress(),
-            contact.getHomePhone(), contact.getMobilePhone(), contact.getWorkPhone(),
-            contact.getEmail(), contact.getEmail2(),contact.getEmail3())
+            "H:"+contact.getHomePhone(), "M:"+contact.getMobilePhone(), "W:"+contact.getWorkPhone(),
+            contact.getEmail(),"(www."+getEmail[1]+")",contact.getEmail2(),"(www."+getEmail2[1]+")",
+            contact.getEmail3(),"(www."+getEmail3[1]+")")
             .stream().filter((s) -> ! s.equals(""))
             .map(ContactInfoTests:: cleaned)
             .collect(Collectors.joining(""));
@@ -46,8 +50,7 @@ public class ContactInfoTests extends TestBase {
   public static String cleaned(String address) {
 
     return address.replaceAll("\\s+", " ").
-            replaceAll("\\s","").replaceAll("[H:,M:,W:]","").replaceAll("\\www+.\\w+.\\w+","")
-            .replaceAll("[()]","");
+            replaceAll("\\s","");
 
   }
 
