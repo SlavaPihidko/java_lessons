@@ -1,5 +1,6 @@
 package qa.addressbook.model;
 
+import java.io.File;
 import java.security.SecureRandom;
 
 public class ContactData {
@@ -21,6 +22,7 @@ public class ContactData {
   private int id = Integer.MAX_VALUE;
   private String allPhones;
   private String allDataOfContacts;
+  private File photo;
 
   public String getAllPhones() {
     return allPhones;
@@ -231,6 +233,15 @@ public class ContactData {
     return this;
   }
 
+  public File getPhoto() {
+    return photo;
+  }
+
+  public ContactData withPhoto(File photo) {
+    this.photo = photo;
+    return this;
+  }
+
 
   @Override
   public String toString() {
@@ -264,6 +275,5 @@ public class ContactData {
     result = 31 * result + id;
     return result;
   }
-
 
 }

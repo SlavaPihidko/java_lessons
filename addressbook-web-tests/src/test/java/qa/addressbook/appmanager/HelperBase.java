@@ -7,6 +7,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import qa.addressbook.tests.TestBase;
 
+import java.io.File;
+
 /**
  * Created by Slava on 02.03.2016.
  */
@@ -32,6 +34,13 @@ public class HelperBase {
       }
     }
   }
+
+  protected void attach(By locator, File file) {
+    if(file!=null) {
+       // wd.findElement(locator).clear(); для файлового метода ввода очистка выполняеться автоматически
+        wd.findElement(locator).sendKeys(file.getAbsolutePath());
+      }
+    }
 
   public  boolean isAlertPresent() {
     try {
