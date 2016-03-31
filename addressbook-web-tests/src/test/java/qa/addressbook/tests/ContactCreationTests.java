@@ -38,20 +38,20 @@ public class ContactCreationTests extends TestBase {
       line = reader.readLine();
     }
     Gson gson = new Gson();
-    List<GroupData> contacts = gson.fromJson(json, new TypeToken<List < ContactData >>(){}.getType());
+    List<ContactData> contacts = gson.fromJson(json, new TypeToken<List < ContactData >>(){}.getType());
     return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
   }
 
   @Test(dataProvider = "validContactsFromJson")
-  public void testsAddNewAddress() {
+  public void testsAddNewAddress(ContactData contact) {
     app.goTo().homePage();
     Contacts before = app.getContactHelper().all();
     File photo = new File("src/test/resources/ava.png");
-    ContactData contact = new ContactData()
+    /*ContactData contact = new ContactData()
             .withFirstName("Viacheslav").withLastName("Pykhydko").withNickname("Slava17").withTitle("3D Printers")
             .withCompany("Printers Ltd.").withAddress("Ukraine, Kiev").withHomePhone("044-11-22-3-33")
             .withMobilePhone("+308-63-077-77-77").withWorkPhone("044-11-22-444").withEmail("slava17puh@gmail.com")
-            .withGroup("test_group").withPhoto(photo);
+            .withGroup("test_group").withPhoto(photo);*/
 
     app.getContactHelper().create(contact);
     Contacts after = app.getContactHelper().all();
