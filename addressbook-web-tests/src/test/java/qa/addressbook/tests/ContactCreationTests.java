@@ -1,19 +1,25 @@
 package qa.addressbook.tests;
 
 //import com.sun.java.util.jar.pack.Package;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import qa.addressbook.model.ContactData;
 import qa.addressbook.model.Contacts;
+import qa.addressbook.model.GroupData;
 
+import java.io.BufferedReader;
 import java.io.File;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.*;
@@ -21,7 +27,22 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactCreationTests extends TestBase {
 
 
-  @Test
+  @DataProvider
+  public Iterator<Object[]> validContactsFromJson() throws IOException {
+    List<Object[]> list = new ArrayList<Object[]>();
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+    String json = "";
+    String line = reader.readLine();
+    while (line !=null) {
+      json+=line;
+      line = reader.readLine();
+    }
+    Gson gson = new Gson();
+    List<GroupData> contacts = gson.fromJson(json, new TypeToken<List < ContactData >>(){}.getType());
+    return contacts.stream().map((c) -> new Object[] {c}).collect(Collectors.toList()).iterator();
+  }
+
+  @Test(dataProvider = "validContactsFromJson")
   public void testsAddNewAddress() {
     app.goTo().homePage();
     Contacts before = app.getContactHelper().all();

@@ -1,19 +1,25 @@
 package qa.addressbook.model;
 
+import com.google.gson.annotations.Expose;
+
 import java.io.File;
 import java.security.SecureRandom;
 
 public class ContactData {
 
+  @Expose
   private  String firstName;
+  @Expose
   private  String lastName;
   private  String nickname;
   private  String title;
   private  String company;
+  @Expose
   private  String address;
   private  String homePhone;
   private  String mobilePhone;
   private  String workPhone;
+  @Expose
   private  String email;
   private String email2;
   private String email3;

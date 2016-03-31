@@ -21,16 +21,12 @@ public class GroupData {
     this.header = header;
     this.footer = footer;
   }
-
-
   public GroupData(int id, String name, String header, String footer) {
     this.id = id;
     this.name = name;
     this.header = header;
     this.footer = footer;
   }*/
-
-
 
   public GroupData withId(int id) {
     this.id = id;
