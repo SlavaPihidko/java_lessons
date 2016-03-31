@@ -3,6 +3,7 @@ package qa.addressbook.Generators;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import com.thoughtworks.xstream.XStream;
 import qa.addressbook.model.GroupData;
 
 import java.io.File;
@@ -49,8 +50,14 @@ public class GroupDataGenerator {
     }
   }
 
-  private void saveAsXml(List<GroupData> groups, File file) {
+  private void saveAsXml(List<GroupData> groups, File file) throws IOException {
     XStream xstream = new XStream();
+    //xstream.alias("group", GroupData.class);
+    xstream.processAnnotations(GroupData.class);
+    String xml = xstream.toXML(groups);
+    Writer writer = new FileWriter(file);
+    writer.write(xml);
+    writer.close();
   }
 
   private  void saveAsCsv(List<GroupData> groups, File file) throws IOException {
@@ -66,7 +73,7 @@ public class GroupDataGenerator {
     List<GroupData> groups = new ArrayList<GroupData>();
     for (int i=0; i<count; i++) {
       groups.add(new GroupData().withName(String.format("test %s", i))
-      .withHeader(String.format("header %s", i)).withFooter(String.format("footer %s", i)));
+      .withHeader(String.format("header \n %s", i)).withFooter(String.format("footer \n %s", i))); // можно убрать \n что бы в одной строке было
     }
     return groups;
   }
