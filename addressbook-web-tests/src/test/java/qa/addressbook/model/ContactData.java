@@ -16,6 +16,7 @@ public class ContactData {
   private  String company;
   @Expose
   private  String address;
+  @Expose
   private  String homePhone;
   private  String mobilePhone;
   private  String workPhone;
@@ -254,8 +255,10 @@ public class ContactData {
     return "ContactData{" +
             "firstName='" + firstName + '\'' +
             ", lastName='" + lastName + '\'' +
-            ", address='" + address + '\'' +
             ", id=" + id +
+            ", homePhone='" + homePhone + '\'' +
+            ", address='" + address + '\'' +
+            ", email='" + email + '\'' +
             '}';
   }
 
