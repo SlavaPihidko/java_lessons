@@ -45,6 +45,6 @@ public class ContactDeletionTests extends TestBase {
     Assert.assertEquals(after.size(),before.size()-1);
 
     assertThat(after, equalTo(before.withOut(deletedContact)));
-
+//внесены изменения для проверки 1
   }
 }
